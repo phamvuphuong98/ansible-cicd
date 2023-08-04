@@ -87,6 +87,9 @@
         comparisons:
           image: strict
 
+    - name: Migrate seed
+      shell: sleep 15 && sudo docker exec -i phuong-jenkins sh -c "npx sequelize-cli model:generate --name Student --attributes firstName:string,lastName:string,email:string && npx sequelize-cli db:migrate"
+
     - name: Prune everything
       community.docker.docker_prune:
         containers: true
