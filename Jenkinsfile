@@ -2,7 +2,7 @@ pipeline {
 
     agent{
         docker {
-            image 'phamvuphuong98/test-cicd'
+            image 'khaliddinh/ansible'
         }
     }
     environment {
