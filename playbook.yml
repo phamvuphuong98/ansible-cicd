@@ -48,8 +48,8 @@
           - name: test
             aliases:
               - test
-        environment:
-          MYSQL_ROOT_PASSWORD: 123456
+        env:
+          MYSQL_ROOT_PASSWORD: '123456'
           MYSQL_DATABASE: nodejs
         detach: true
         state: started
