@@ -89,10 +89,11 @@
 
     - name: Migrate seed
       shell: sleep 15 && sudo docker exec -i phuong-jenkins sh -c "npx sequelize-cli model:generate --name Student --attributes firstName:string,lastName:string,email:string"
-    
+      ignore_errors: true
+      
     - name: Migrate seed 1
       shell: sleep 15 && sudo docker exec -i phuong-jenkins sh -c "npx sequelize-cli db:migrate"
-      ignore_errors: true
+
 
     - name: Prune everything
       community.docker.docker_prune:
