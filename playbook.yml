@@ -42,8 +42,8 @@
         name: test
     - name: Re-create a MySQL container
       docker_container:
-        name: mysql-nodejs
-        image: mysql:5.7
+        name: khalid-mysql
+        image: mysql:8.0
         networks:
           - name: test
             aliases:
@@ -56,19 +56,17 @@
         recreate: yes
         exposed_ports:
           - 3306
-        published_ports:
-          - 3308:3306
         pull: true
         comparisons:
           image: strict
-    # - name: Copy file with owner and permissions
-    #   ansible.builtin.copy:
-    #     src: ./script
-    #     dest: /home/ubuntu/script
-    #     owner: ubuntu
-    #     group: ubuntu
-    # - name: SLEEP now !!!
-    #   shell: sleep 15 && sudo docker exec -i khalid-mysql mysql --user=root --password=password123_DONG < script
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ./script
+        dest: /home/ubuntu/script
+        owner: ubuntu
+        group: ubuntu
+    - name: SLEEP now !!!
+      shell: sleep 15 && sudo docker exec -i khalid-mysql mysql --user=root --password=123456 < script
 
     - name: Re-create a Spring container
       docker_container:
